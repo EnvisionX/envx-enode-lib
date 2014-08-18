@@ -1,0 +1,48 @@
+#!/bin/sh
+
+##
+## Helper script for running Erlang node as system daemon.
+##
+## Mandatory variables:
+##  BASENAME - short daemon name;
+##  APPS - comma separated list of Erlang applications to start.
+##
+
+# Target Erlang node full name
+TARGET_NODE_NAME=$BASENAME@127.1
+
+# Configuration file for Erlang applications
+ERL_CONFIG_PATH=/etc/proffero/$BASENAME.config
+
+# Exported HOME is vital for Erlang emulator to start
+export HOME=/var/lib/proffero-$BASENAME
+cd "$HOME"
+
+# Erlang emulator location
+ERL=/usr/bin/erl
+
+# Erlang Crash Dump file location
+CRASH_DUMP_PATH=/var/log/proffero/$BASENAME/erl_crash.dump
+
+# SASL log file location.
+SASL_LOG_PATH=/var/log/proffero/$BASENAME/sasl.log
+
+if [ "$1" = remsh ]; then
+    # Connect to the running target Erlang node
+    $ERL \
+        -hidden \
+        -name remsh_${BASENAME}_`date +%N` \
+        -remsh $TARGET_NODE_NAME
+else
+    # Start the target Erlang node
+    $ERL \
+        -name $TARGET_NODE_NAME \
+        -config $ERL_CONFIG_PATH \
+        -noinput \
+        -boot start_sasl \
+        -smp enable \
+        -env ERL_CRASH_DUMP $CRASH_DUMP_PATH \
+        -eval "ok=file:write_file(\"$HOME/pid\",os:getpid())" \
+        -eval "ok=proffero_lib_application:start([$APPS])" | \
+        /usr/bin/reopener $SASL_LOG_PATH 2>&1
+fi
