@@ -1,16 +1,16 @@
-Source: proffero-enode-lib
+Source: envx-enode-lib
 Section: misc
 Priority: extra
-Maintainer: Aleksey Morarash <aleksey.morarash@proffero.com>
+Maintainer: Aleksey Morarash <aleksey.morarash@envisionx.co>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
-Homepage: https://github.com/Proffero/proffero-enode-lib
-Vcs-Browser: https://github.com/Proffero/proffero-enode-lib
-Vcs-Git: https://github.com/Proffero/proffero-enode-lib.git
+Homepage: https://github.com/EnvisionX/envx-enode-lib
+Vcs-Browser: https://github.com/EnvisionX/envx-enode-lib
+Vcs-Git: https://github.com/EnvisionX/envx-enode-lib.git
 
-Package: proffero-enode-lib
+Package: envx-enode-lib
 Architecture: all
-Depends: proffero-base-instance, erlang-base, proffero-erlang-lib, reopener
+Depends: envx-base-instance, erlang-base, envx-erlang-lib, reopener
 Description: Shell helpers for running Erlang node as system daemon
  Consists of Shell include files:
  - for init.d script;

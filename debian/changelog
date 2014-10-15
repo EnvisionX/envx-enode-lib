@@ -1,5 +1,5 @@
-proffero-enode-lib (0.0.1-2) unstable; urgency=low
+envx-enode-lib (0.0.1-2) unstable; urgency=low
 
   * Initial release.
 
- -- Aleksey Morarash <aleksey.morarash@proffero.com>  Mon, 18 Aug 2014 16:17:00 +0300
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Mon, 18 Aug 2014 16:17:00 +0300

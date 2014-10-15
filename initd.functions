@@ -10,13 +10,13 @@
 
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-NAME=proffero_$BASENAME
-SCRIPTNAME=/etc/init.d/proffero-$BASENAME
+NAME=envx_$BASENAME
+SCRIPTNAME=/etc/init.d/envx-$BASENAME
 
 RETVAL=0
-DAEMON=/usr/lib/proffero/$BASENAME
-PIDFILE=/var/lib/proffero-$BASENAME/pid
-COOKIEFILE=/var/lib/proffero-$BASENAME/.erlang.cookie
+DAEMON=/usr/lib/envx/$BASENAME
+PIDFILE=/var/lib/envx-$BASENAME/pid
+COOKIEFILE=/var/lib/envx-$BASENAME/.erlang.cookie
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
