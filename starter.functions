@@ -31,7 +31,7 @@ if [ "$1" = remsh ]; then
     # Connect to the running target Erlang node
     $ERL \
         -hidden \
-        -name remsh_${BASENAME}_`date +%N` \
+        -name remsh_${BASENAME}_`date +%N`@127.1 \
         -remsh $TARGET_NODE_NAME
 else
     # Start the target Erlang node
