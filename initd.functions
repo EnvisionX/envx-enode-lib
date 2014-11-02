@@ -136,8 +136,11 @@ case "$1" in
     remsh)
         su -s /bin/sh -c "$DAEMON remsh" $NAME
         ;;
+    eval)
+        su -s /bin/sh -c "$DAEMON eval '$2'" $NAME
+        ;;
     *)
-        echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload|remsh}" >&2
+        echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload|remsh|eval}" >&2
         exit 3
         ;;
 esac

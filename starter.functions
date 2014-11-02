@@ -33,6 +33,19 @@ if [ "$1" = remsh ]; then
         -hidden \
         -name remsh_${BASENAME}_`date +%N`@127.1 \
         -remsh $TARGET_NODE_NAME
+elif [ "$1" = eval ]; then
+    # Connect to the running target Erlang node and
+    # apply some Erlang code
+    if [ -z "$2" ]; then
+        echo "Error: nothing to eval" 1>&2
+        echo "Usage: <scriptname> eval <erlang code>" 1>&2
+        exit 1
+    fi
+    $ERL \
+        -hidden -noshell \
+        -name eval_${BASENAME}_`date +%N`@127.1 \
+        -eval "io:format(\"~p~n\",[rpc:call('$TARGET_NODE_NAME',envx_lib,eval,[\"$2\"])])" \
+        -eval 'halt()'
 else
     # Start the target Erlang node
     $ERL \

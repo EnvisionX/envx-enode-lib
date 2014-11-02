@@ -1,3 +1,9 @@
+envx-enode-lib (0.2.0) unstable; urgency=low
+
+  * implement 'eval' target.
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Sun, 02 Nov 2014 22:41:00 +0200
+
 envx-enode-lib (0.1.0) unstable; urgency=low
 
   * fix remsh on hosts with not configured FQDN.
