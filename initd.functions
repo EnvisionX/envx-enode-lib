@@ -139,8 +139,20 @@ case "$1" in
     eval)
         su -s /bin/sh -c "$DAEMON eval '$2'" $NAME
         ;;
+    getll)
+        su -s /bin/sh \
+            -c "$DAEMON eval 'envx_logger:get_loglevel()'" $NAME
+        ;;
+    setll)
+        su -s /bin/sh \
+            -c "$DAEMON eval 'ok=envx_logger:set_loglevel($2)'" $NAME
+        ;;
     *)
-        echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload|remsh|eval}" >&2
+        {
+            echo -n "Usage: $SCRIPTNAME"
+            echo -n " {start|stop|status|restart|force-reload"
+            echo    "|remsh|eval|getll|setll}"
+        } >&2
         exit 3
         ;;
 esac
