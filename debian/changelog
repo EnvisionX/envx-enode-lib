@@ -1,3 +1,9 @@
+envx-enode-lib (0.3.0) unstable; urgency=low
+
+  * add 'getll' and 'setll' targets.
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Fri, 12 Dec 2014 12:06:00 +0200
+
 envx-enode-lib (0.2.0) unstable; urgency=low
 
   * implement 'eval' target.
