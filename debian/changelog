@@ -1,8 +1,9 @@
-envx-enode-lib (0.4.0) unstable; urgency=low
+envx-enode-lib (0.4.1) unstable; urgency=low
 
-  * add 'counters' target.
+  * add 'counters' target;
+  * check Erlang application config file before daemon start.
 
- -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Tue, 19 May 2015 15:06:00 +0300
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Tue, 19 May 2015 18:01:00 +0300
 
 envx-enode-lib (0.3.0) unstable; urgency=low
 
