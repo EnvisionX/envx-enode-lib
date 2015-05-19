@@ -147,11 +147,15 @@ case "$1" in
         su -s /bin/sh \
             -c "$DAEMON eval 'ok=envx_logger:set_loglevel($2)'" $NAME
         ;;
+    counters)
+        su -s /bin/sh \
+            -c "$DAEMON eval 'envx_counters:dump()'" $NAME
+        ;;
     *)
         {
             echo -n "Usage: $SCRIPTNAME"
             echo -n " {start|stop|status|restart|force-reload"
-            echo    "|remsh|eval|getll|setll}"
+            echo    "|remsh|eval|getll|setll|counters}"
         } >&2
         exit 3
         ;;
