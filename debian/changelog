@@ -1,3 +1,9 @@
+envx-enode-lib (0.4.0) unstable; urgency=low
+
+  * add 'counters' target.
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Tue, 19 May 2015 15:06:00 +0300
+
 envx-enode-lib (0.3.0) unstable; urgency=low
 
   * add 'getll' and 'setll' targets.
