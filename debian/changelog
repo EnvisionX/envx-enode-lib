@@ -1,3 +1,10 @@
+envx-enode-lib (0.4.2) unstable; urgency=low
+
+  * fix init.d script nehaviour when invoked from
+   'service' or 'update-rc.d' tools.
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Fri, 22 May 2015 15:31:00 +0300
+
 envx-enode-lib (0.4.1) unstable; urgency=low
 
   * add 'counters' target;
