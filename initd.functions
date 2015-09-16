@@ -10,7 +10,7 @@
 
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-NAME=envx_$BASENAME
+NAME=envx_`echo $BASENAME | sed s/-/_/`
 SCRIPTNAME=/etc/init.d/envx-$BASENAME
 
 RETVAL=0

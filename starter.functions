@@ -8,8 +8,10 @@
 ##  APPS - comma separated list of Erlang applications to start.
 ##
 
+UNDERSCORED_NAME=`echo "$BASENAME" | sed s/-/_/`
+
 # Target Erlang node full name
-TARGET_NODE_NAME=$BASENAME@127.1
+TARGET_NODE_NAME=$UNDERSCORED_NAME@127.1
 
 # Configuration file for Erlang applications
 ERL_CONFIG_PATH=/etc/envx/$BASENAME.config
@@ -31,7 +33,7 @@ if [ "$1" = remsh ]; then
     # Connect to the running target Erlang node
     $ERL \
         -hidden \
-        -name remsh_${BASENAME}_`date +%N`@127.1 \
+        -name remsh_${UNDERSCORED_NAME}_`date +%N`@127.1 \
         -remsh $TARGET_NODE_NAME
 elif [ "$1" = eval ]; then
     # Connect to the running target Erlang node and
@@ -43,7 +45,7 @@ elif [ "$1" = eval ]; then
     fi
     $ERL \
         -hidden -noshell \
-        -name eval_${BASENAME}_`date +%N`@127.1 \
+        -name eval_${UNDERSCORED_NAME}_`date +%N`@127.1 \
         -eval "io:format(\"~p~n\",[rpc:call('$TARGET_NODE_NAME',envx_lib,eval,[\"$2\"])])" \
         -eval 'halt()'
 else
