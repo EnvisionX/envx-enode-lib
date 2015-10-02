@@ -145,6 +145,9 @@ case "$1" in
     eval)
         su -s /bin/sh -c "$DAEMON eval '$2'" $NAME
         ;;
+    log)
+        su -s /bin/sh -c "$DAEMON log" $NAME
+        ;;
     getll)
         su -s /bin/sh \
             -c "$DAEMON eval 'envx_logger:get_loglevel()'" $NAME

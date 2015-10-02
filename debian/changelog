@@ -1,3 +1,10 @@
+envx-enode-lib (0.4.5) unstable; urgency=medium
+
+  * change permissions on .cookie to allow owner to rewrite its files
+  * added log target to service file
+
+ -- Serge Rybalchenko <fisher@heim.in.ua>  Fri, 02 Oct 2015 15:03:23 +0300
+
 envx-enode-lib (0.4.3) unstable; urgency=low
 
   * allow hyphens in target service name.

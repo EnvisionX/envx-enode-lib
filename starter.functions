@@ -48,6 +48,14 @@ elif [ "$1" = eval ]; then
         -name eval_${UNDERSCORED_NAME}_`date +%N`@127.1 \
         -eval "io:format(\"~p~n\",[rpc:call('$TARGET_NODE_NAME',envx_lib,eval,[\"$2\"])])" \
         -eval 'halt()'
+elif [ "$1" = log ]; then
+    # Start standalone node with SASL error_logger_mf_dir pointing
+    # to the target's node logdir
+    $ERL -name log_${UNDERSCORED_NAME}_`date +%N`@127.1 \
+         -config $ERL_CONFIG_PATH \
+         -eval "ok = application:start(sasl)" \
+         -eval "{ok, _} = rb:start()" \
+         -eval "rb:list(error)"
 else
     # Start the target Erlang node
     $ERL \
