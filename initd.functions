@@ -33,7 +33,7 @@ create_cookie_file(){
     [ -f "$COOKIEFILE" ] || \
         cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c 20 > "$COOKIEFILE"
     chown -R $NAME: "$COOKIEFILE"
-    chmod 400 "$COOKIEFILE"
+    chmod 600 "$COOKIEFILE"
 }
 
 do_start(){
