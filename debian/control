@@ -10,7 +10,8 @@ Vcs-Git: https://github.com/EnvisionX/envx-enode-lib.git
 
 Package: envx-enode-lib
 Architecture: all
-Depends: envx-base-instance, erlang-base, envx-erlang-lib, reopener
+Depends: envx-base-instance, erlang-base, envx-erlang-lib, reopener,
+ envx-erlang-topper
 Description: Shell helpers for running Erlang node as system daemon
  Consists of Shell include files:
  - for init.d script;

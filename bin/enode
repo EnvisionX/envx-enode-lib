@@ -1,0 +1,44 @@
+#!/bin/sh -e
+
+##
+## Erlang node starter for use with systemd.
+## It must be called from ExecStart in service unit file:
+##
+##   ExecStart=/usr/sbin/enode codec /etc/envx/codec.config envx_codec
+##
+## This script must be started with target user privileges. Normally
+## it does when invoked from systemd unit file.
+##
+## Required environment:
+##  - HOME     - target user home directory, e.g. /var/lib/envx-smthng.
+##
+## Required args:
+##  - NODENAME - Erlang node name, e.g. codec. Full erlang node will
+##      look like "codec@127.1";
+##  - CONFIG   - Erlang app config file, e.g. /etc/envx/smthng.config;
+##  - ERLAPP   - name of the target Erlang application to start.
+##
+
+NODENAME="$1"
+CONFIG="$2"
+ERLAPP="$3"
+
+# chdir to home
+cd
+
+# Create erlang cookie file
+test -f .erlang.cookie || \
+    cat /dev/urandom | tr -dc a-zA-Z0-9 | head -c 20 > .erlang.cookie
+chmod 0600 .erlang.cookie
+
+# Check config file syntax
+/usr/share/envx-enode-lib/check_config.escript "$CONFIG"
+
+# sed below is needed to not allow journald to remove leading spaces
+# of the SASL reports
+erl -noinput -boot start_sasl -smp enable \
+    -name "$NODENAME"@127.1 \
+    -config "$CONFIG" \
+    -eval "{ok,[_|_]}=application:ensure_all_started(envx_topper,permanent)" \
+    -eval "{ok,[_|_]}=application:ensure_all_started($ERLAPP,permanent)" | \
+    sed -ur 's/^.+$/.\0/'
