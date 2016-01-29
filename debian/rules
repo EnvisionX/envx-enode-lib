@@ -6,9 +6,3 @@ export DH_OPTIONS
 
 %:
 	dh $@
-
-DESTDIR = debian/envx-enode-lib
-override_dh_install:
-	install -m 755 -d $(DESTDIR)/usr/lib/envx-enode-lib
-	install -m 644 *.functions $(DESTDIR)/usr/lib/envx-enode-lib
-	install -m 755 check_config.escript $(DESTDIR)/usr/lib/envx-enode-lib

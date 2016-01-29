@@ -1,0 +1,2 @@
+*.functions /usr/lib/envx-enode-lib
+check_config.escript /usr/lib/envx-enode-lib
