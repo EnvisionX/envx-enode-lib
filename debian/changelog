@@ -1,3 +1,11 @@
+envx-enode-lib (0.5.0) unstable; urgency=low
+
+  * add helper script for systemd
+  * move check_config.escript to bin/ subdir
+  * deb specs: simplify staged installation
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Fri, 29 Jan 2016 20:48:40 +0200
+
 envx-enode-lib (0.4.5) unstable; urgency=medium
 
   * change permissions on .cookie to allow owner to rewrite its files
