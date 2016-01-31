@@ -1,3 +1,9 @@
+envx-enode-lib (0.6.1) unstable; urgency=low
+
+  * remsh: allow multiple remote shells to the same node
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Sun, 31 Jan 2016 22:34:04 +0200
+
 envx-enode-lib (0.6.0) unstable; urgency=low
 
   * add remsh helper script
