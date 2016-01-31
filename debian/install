@@ -1,5 +1,3 @@
 bin/enode /usr/sbin
 bin/remsh /usr/bin
 bin/check_config.escript /usr/share/envx-enode-lib
-*.functions /usr/lib/envx-enode-lib
-bin/check_config.escript /usr/lib/envx-enode-lib
