@@ -1,3 +1,10 @@
+envx-enode-lib (0.6.2) unstable; urgency=low
+
+  * remsh: proper check of node name
+  * remove obsolete sysv-related code
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Mon, 01 Feb 2016 11:18:14 +0200
+
 envx-enode-lib (0.6.1) unstable; urgency=low
 
   * remsh: allow multiple remote shells to the same node
