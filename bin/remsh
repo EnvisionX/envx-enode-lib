@@ -22,7 +22,7 @@ else
         echo "$NAMES" | cat -n
         exit 1
     fi
-    echo "$NAMES" | grep -q "$1" || \
+    echo "$NAMES" | grep -qE "^$1\$" || \
         {
             echo "There are no Erlang node with name $1. Valid are:"
             echo "$NAMES" | cat -n
