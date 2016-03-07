@@ -1,3 +1,9 @@
+envx-enode-lib (0.6.3) unstable; urgency=low
+
+  * remove unused runtime dependency: reopener
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Mon, 07 Mar 2016 12:37:58 +0200
+
 envx-enode-lib (0.6.2) unstable; urgency=low
 
   * remsh: proper check of node name
