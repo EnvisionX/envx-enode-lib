@@ -1,3 +1,10 @@
+envx-enode-lib (0.7.0) unstable; urgency=low
+
+  * check erlang config tool: improve diagnostics
+  * switch back from journald to pipe logging and logrotate
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Tue, 15 Mar 2016 11:41:30 +0200
+
 envx-enode-lib (0.6.3) unstable; urgency=low
 
   * remove unused runtime dependency: reopener
