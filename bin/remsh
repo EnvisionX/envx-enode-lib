@@ -4,11 +4,21 @@
 ## Start remote shell to one of the running Erlang daemons
 ##
 ## Usage:
-##    remsh [node_short_name]
+##    remsh -h|--help
+##    remsh [node_short_name [erlang_expression]]
 ##
 ## When only one Erlang node is running, no need to specify the name.
 ##
 
+if [ "$1" = '-h' -o "$1" = '--help' ]; then
+    echo "\
+Usage:
+    remsh -h|--help
+    remsh [node_short_name [erlang_expression]]" 1>&2
+    exit 1
+fi
+
+ERL_EXPRESSION=""
 NAMES=`epmd -names | awk '/^name/{print$2}' | grep -v 'remsh-'`
 NAME_COUNT=`echo "$NAMES" | wc -l`
 if [ $NAME_COUNT = 1 ]; then
@@ -29,6 +39,14 @@ else
             exit 1
         }
     NAME="$1"
+    shift
+    ERL_EXPRESSION="$*"
 fi
 export HOME=/var/lib/envx-"$NAME"
-exec erl -name remsh-"$NAME"-`date +%N`@127.1 -remsh "$NAME"@127.1
+if [ -n "ERL_EXPRESSION" ]; then
+    exec erl -name remsh-"$NAME"-`date +%N`@127.1 -noinput \
+        -pa /usr/share/envx-enode-lib/ \
+        -s remsh_evaluator do "$NAME"@127.1 "$ERL_EXPRESSION"
+else
+    exec erl -name remsh-"$NAME"-`date +%N`@127.1 -remsh "$NAME"@127.1
+fi
