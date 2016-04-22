@@ -43,7 +43,7 @@ else
     ERL_EXPRESSION="$*"
 fi
 export HOME=/var/lib/envx-"$NAME"
-if [ -n "ERL_EXPRESSION" ]; then
+if [ -n "$ERL_EXPRESSION" ]; then
     exec erl -name remsh-"$NAME"-`date +%N`@127.1 -noinput \
         -pa /usr/share/envx-enode-lib/ \
         -s remsh_evaluator do "$NAME"@127.1 "$ERL_EXPRESSION"
