@@ -1,3 +1,9 @@
+envx-enode-lib (0.8.0) unstable; urgency=low
+
+  * allow to execute custom Erlang code with remsh cmd tool
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Fri, 22 Apr 2016 13:04:52 +0300
+
 envx-enode-lib (0.7.0) unstable; urgency=low
 
   * check erlang config tool: improve diagnostics
