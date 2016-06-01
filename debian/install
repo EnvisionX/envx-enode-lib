@@ -1,4 +1,5 @@
 bin/enode /usr/sbin
+bin/enode-stop /usr/sbin
 bin/remsh /usr/bin
 bin/check_config.escript /usr/share/envx-enode-lib
 remsh_evaluator.beam /usr/share/envx-enode-lib

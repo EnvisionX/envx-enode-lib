@@ -1,6 +1,6 @@
 -module(remsh_evaluator).
 
--export([do/1]).
+-export([do/1, shutdown/1]).
 
 -spec do([atom(), ...]) -> no_return().
 do([Node, ErlangCode0]) ->
@@ -19,6 +19,39 @@ do([Node, ErlangCode0]) ->
             rpc:call(Node,
                      erl_eval, exprs, [Expressions, _Bindings = []]),
         ok = io:format("~p~n", [Value]),
+        halt(0)
+    catch
+        ExcType:ExcReason ->
+            io:format(
+              "CRASHED.~n"
+              "  type=~p~n"
+              "  reason=~p~n"
+              "  stacktrace=~p~n",
+              [ExcType, ExcReason, erlang:get_stacktrace()]),
+            halt(1)
+    end.
+
+%% @doc Gracefully shutdown remote Erlang node.
+-spec shutdown([atom(), ...]) -> ok.
+shutdown([Node]) ->
+    try
+        true = monitor_node(Node, true),
+        receive
+            {nodedown, Node} ->
+                io:format(standard_error, "Remote node ~w not running~n", [Node])
+        after 1000 ->
+                ok = rpc:call(Node, init, stop, []),
+                receive
+                    {nodedown, Node} ->
+                        io:format("Remote node ~w stopped~n", [Node])
+                after 3000 ->
+                        io:format(
+                          standard_error,
+                          "Remote node ~w not stopped: timeout waiting for monitor~n",
+                          [Node]),
+                        halt(1)
+                end
+        end,
         halt(0)
     catch
         ExcType:ExcReason ->

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+##
+## Command line tool to perform gracefull shutdown of Erlang node.
+## It can be used in ExecStop in service unit file like follows:
+##
+##   ExecStop=/usr/sbin/enode-stop codec
+##
+## This script must be started with target user privileges. Normally
+## it does when invoked from systemd unit file.
+##
+## Required environment:
+##  - HOME     - target user home directory, e.g. /var/lib/envx-smthng.
+##
+## Required args:
+##  - NODENAME - short Erlang node name, e.g. codec. Full erlang node will
+##      look like "codec@127.1";
+##
+
+NODENAME="$1"
+
+exec erl -name stopper-"$NODENAME"-`date +%N`@127.1 -noinput \
+     -pa /usr/share/envx-enode-lib/ \
+     -s remsh_evaluator shutdown "$NODENAME"@127.1
