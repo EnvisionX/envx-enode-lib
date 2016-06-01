@@ -1,3 +1,11 @@
+envx-enode-lib (0.9.0) unstable; urgency=low
+
+  * remsh: fix remote command execution
+  * add enode-stop tool for graceful shutdown Erlang node
+  * set maximum shutdown time for Erlang VM
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Wed, 01 Jun 2016 16:26:22 +0300
+
 envx-enode-lib (0.8.1) unstable; urgency=low
 
   * typo fix
