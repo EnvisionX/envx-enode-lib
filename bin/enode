@@ -28,6 +28,7 @@ ERLAPP="$3"
     cd
     /usr/share/envx-enode-lib/check_config.escript "$CONFIG"
     erl -noinput -boot start_sasl -smp enable -name "$NODENAME"@127.1 \
+        -shutdown_time 15000 \
         -config "$CONFIG" \
         -eval "{ok,[_|_]}=application:ensure_all_started(envx_topper,permanent)" \
         -eval "{ok,[_|_]}=application:ensure_all_started($ERLAPP,permanent)"
