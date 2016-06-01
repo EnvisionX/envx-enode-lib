@@ -23,6 +23,16 @@ NAMES=`epmd -names | awk '/^name/{print$2}' | grep -v 'remsh-'`
 NAME_COUNT=`echo "$NAMES" | wc -l`
 if [ $NAME_COUNT = 1 ]; then
     NAME="$NAMES"
+    if [ -n "$1" ]; then
+        if [ "$NAME" = "$1" ]; then
+            shift
+            ERL_EXPRESSION="$*"
+        else
+            echo "There are no Erlang node with name $1. Valid are:"
+            echo "$NAMES" | cat -n
+            exit 1
+        fi
+    fi
 elif [ $NAME_COUNT = 0 ]; then
     echo "No running Erlang nodes found" 1>&2
     exit 1
