@@ -4,9 +4,9 @@ Priority: extra
 Maintainer: Aleksey Morarash <aleksey.morarash@envisionx.co>
 Build-Depends: debhelper (>= 8.0.0), erlang-base
 Standards-Version: 3.9.3
-Homepage: https://github.com/EnvisionX/envx-enode-lib
-Vcs-Browser: https://github.com/EnvisionX/envx-enode-lib
-Vcs-Git: https://github.com/EnvisionX/envx-enode-lib.git
+Homepage: https://github.com/ENVISIONX/envx-enode-lib
+Vcs-Browser: https://github.com/ENVISIONX/envx-enode-lib
+Vcs-Git: https://github.com/ENVISIONX/envx-enode-lib.git
 
 Package: envx-enode-lib
 Architecture: all
