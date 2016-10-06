@@ -23,6 +23,16 @@ NODENAME="$1"
 CONFIG="$2"
 ERLAPP="$3"
 
+if echo "$NODENAME" | egrep -q '_[0-9]+$'; then
+    # $NODENAME is the name with integer index
+    # (for multinode configurations like Shaper)
+    LOGDIR=/var/log/envx-`echo "$NODENAME" | sed -r 's/_[0-9]+$//'`
+    INDEX=`echo "$NODENAME" | sed -r 's/^.+_([0-9]+)$/\1/'`
+    LOG="$LOGDIR/messages-$INDEX.log"
+else
+    LOG=/var/lib/envx-"$NAME"/messages.log
+fi
+
 {
     echo "\n`date` *** STARTING ***"
     cd
@@ -33,4 +43,4 @@ ERLAPP="$3"
         -eval "{ok,[_|_]}=application:ensure_all_started(envx_topper,permanent)" \
         -eval "{ok,[_|_]}=application:ensure_all_started($ERLAPP,permanent)"
 } 2>&1 | \
-    reopener "/var/log/envx-$NODENAME/messages.log"
+    reopener "$LOG"
