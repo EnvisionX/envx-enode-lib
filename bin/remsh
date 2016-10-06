@@ -52,7 +52,14 @@ else
     shift
     ERL_EXPRESSION="$*"
 fi
-export HOME=/var/lib/envx-"$NAME"
+if echo "$NAME" | egrep -q '_[0-9]+$'; then
+    # $NAME is the name with integer index
+    # (for multinode configurations like Shaper)
+    HOME=/var/lib/envx-`echo "$NAME" | sed -r 's/_[0-9]+$//'`
+else
+    HOME=/var/lib/envx-"$NAME"
+fi
+export HOME
 if [ -n "$ERL_EXPRESSION" ]; then
     exec erl -name remsh-"$NAME"-`date +%N`@127.1 -noinput \
         -pa /usr/share/envx-enode-lib/ \
