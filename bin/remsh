@@ -19,7 +19,7 @@ Usage:
 fi
 
 ERL_EXPRESSION=""
-NAMES=`epmd -names | awk '/^name/{print$2}' | grep -v 'remsh-'`
+NAMES=`epmd -names | awk '/^name/{print$2}' | grep -v 'remsh-' | sort`
 NAME_COUNT=`echo "$NAMES" | wc -l`
 if [ $NAME_COUNT = 1 ]; then
     NAME="$NAMES"
