@@ -30,7 +30,7 @@ if echo "$NODENAME" | egrep -q '_[0-9]+$'; then
     INDEX=`echo "$NODENAME" | sed -r 's/^.+_([0-9]+)$/\1/'`
     LOG="$LOGDIR/messages-$INDEX.log"
 else
-    LOG=/var/lib/envx-"$NAME"/messages.log
+    LOG=/var/lib/envx-"$NODENAME"/messages.log
 fi
 
 {
