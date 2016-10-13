@@ -1,3 +1,9 @@
+envx-enode-lib (0.10.3) unstable; urgency=low
+
+  * typo fix
+
+ -- Aleksey Morarash <aleksey.morarash@envisionx.co>  Thu, 13 Oct 2016 21:54:53 +0300
+
 envx-enode-lib (0.10.2) unstable; urgency=low
 
   * typo fix
